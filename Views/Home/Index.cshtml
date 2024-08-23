@@ -1,0 +1,179 @@
+﻿@using WebApp.Components
+@{
+    ViewData["Title"] = "Home Page";
+
+    string name = "kevin";
+    int age = 28;
+
+    bool hasResultOne = false;
+
+    if (ViewBag.resultOne is bool resultOne)
+    {
+        hasResultOne = resultOne;
+    }
+
+    var tree1 = ViewBag.Arvore1 as int[][] ?? new int[0][];
+    var tree2 = ViewBag.Arvore2 as int[][] ?? new int[0][];
+}
+@model IEnumerable<DepartamentoPessoaViewModel>
+
+<body class="flex h-screen max-h-screen justify-center bg-gradient-to-b from-cyan-800 to-blue-400">
+    <h2 class="mx-auto w-1/2 justify-self-center text-center text-6xl font-bold text-white">Desafio 1</h2>
+
+    <div class="mb-10 mt-10 flex flex-col items-center">
+        <div class="w-full overflow-x-auto">
+            <div class="min-w-full px-6 py-2 lg:px-8">
+                <div class="flex w-full flex-col items-center justify-evenly sm:flex-row">
+                    @* #### Tabela Pessoa #### *@
+                    <div class="overflow-hidden rounded-lg border">
+                        <div class="w-fit bg-slate-500 text-center text-3xl text-white">Tabela Pessoa</div>
+                        <table class="min-w-full">
+                            <thead class="bg-white">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4 text-left text-sm font-medium text-gray-900">Id</th>
+                                    <th scope="col" class="px-6 py-4 text-left text-sm font-medium text-gray-900">Nome</th>
+                                    <th scope="col" class="px-6 py-4 text-left text-sm font-medium text-gray-900">Salario</th>
+                                    <th scope="col" class="px-6 py-4 text-left text-sm font-medium text-gray-900">DeptId</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b bg-gray-100">
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">1</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">Joe</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">70000</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">1</td>
+                                </tr>
+                                <tr class="border-b bg-white">
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">2</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">Henry</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">80000</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">2</td>
+                                </tr>
+                                <tr class="border-b bg-gray-100">
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">3</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">Sam</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">60000</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">2</td>
+                                </tr>
+                                <tr class="border-b bg-white">
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">4</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">Max</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">90000</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    @* #### Tabela Departamento #### *@
+                    <div class="overflow-hidden rounded-lg border">
+                        <div class="w-fit bg-slate-500 text-center text-3xl text-white">Tabela Dept.</div>
+                        <table class="min-w-full">
+                            <thead class="bg-white">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4 text-left text-sm font-medium text-gray-900">Id</th>
+                                    <th scope="col" class="px-6 py-4 text-left text-sm font-medium text-gray-900">Nome</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b bg-gray-100">
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">1</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">TI</td>
+                                </tr>
+                                <tr class="border-b bg-white">
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">2</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">Vendas</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                @* #### Resultado #### *@
+                @if(hasResultOne){
+                    <div class="mt-10 overflow-hidden p-4">
+                        <div class="mx-auto w-1/2 rounded-lg border">
+                            <div class="rounded-lg bg-slate-500 text-center text-3xl text-white">Tabela Resultado</div>
+                            <table class="w-full text-center">
+                                <thead class="bg-white">
+                                    <tr>
+                                        <th scope="col" class="p-2 text-sm font-medium text-gray-900">Dept.</th>
+                                        <th scope="col" class="p-2 text-sm font-medium text-gray-900">Pessoa</th>
+                                        <th scope="col" class="p-2 text-sm font-medium text-gray-900">Salario</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b bg-gray-100">
+                                        @if (Model != null && Model.Any())
+                                        {
+                                            <td class="whitespace-nowrap p-2 text-sm font-medium text-gray-900">@Model.ToList()[0].Departamento</td>
+                                            <td class="whitespace-nowrap p-2 text-sm font-light text-gray-900">@Model.ToList()[0].Pessoa</td>
+                                            <td class="whitespace-nowrap p-2 text-sm font-light text-gray-900">@Model.ToList()[0].Salario</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="whitespace-nowrap p-2 text-sm font-medium text-gray-900">-</td>
+                                            <td class="whitespace-nowrap p-2 text-sm font-light text-gray-900">-</td>
+                                            <td class="whitespace-nowrap p-2 text-sm font-light text-gray-900">-</td>
+                                        }
+                                    </tr>
+                                    <tr class="border-b bg-white">
+                                        @if (Model != null && Model.Any())
+                                        {
+                                            <td class="whitespace-nowrap p-2 text-sm font-medium text-gray-900">@Model.ToList()[1].Departamento</td>
+                                            <td class="whitespace-nowrap p-2 text-sm font-light text-gray-900">@Model.ToList()[1].Pessoa</td>
+                                            <td class="whitespace-nowrap p-2 text-sm font-light text-gray-900">@Model.ToList()[1].Salario</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="whitespace-nowrap p-2 text-sm font-medium text-gray-900">-</td>
+                                            <td class="whitespace-nowrap p-2 text-sm font-light text-gray-900">-</td>
+                                            <td class="whitespace-nowrap p-2 text-sm font-light text-gray-900">-</td>
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+                <form asp-area="" asp-controller="Home" asp-action="DepartamentosSalarios" method="post" class="mb-10 mt-10 flex w-full justify-center">
+@*                     <input type="hidden" name="Name" value="@name" />
+                    <input type="hidden" name="Age" value="@age" /> *@
+                    <button class="rounded-md bg-slate-500 px-4 py-2 font-bold text-white hover:bg-slate-700">
+                        Clique Aqui para resolver
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto mt-20 w-1/2 justify-self-center text-center text-6xl font-bold text-white">Desafio 2</div>
+    <form asp-area="" asp-controller="Home" asp-action="Arvore" method="post" class="mt-10 flex w-full justify-center">
+        <button class="rounded-md bg-slate-500 px-4 py-2 font-bold text-white hover:bg-slate-700">
+            Exibir Resultados de cenários
+        </button>
+    </form>
+
+    <h2 class="text-3xl font-bold text-white">Representação Arvores</h2>
+
+    <h3 class="mt-5 font-sans text-3xl text-white">Arvore 1</h3>
+    <div class="mt-5 font-mono text-2xl text-white">
+        Root: @(tree1.Length > 0 && tree1[0].Length > 0 ? tree1[0][0].ToString() : "-")<br>
+        Left Branch: @(tree1.Length > 1 && tree1[1].Length > 0 ? string.Join(" -> ", tree1[1]) : "-")<br>
+        Right Branch: @(tree1.Length > 2 && tree1[2].Length > 0 ? string.Join(" -> ", tree1[2]) : "-")
+    </div>
+
+    <hr />
+
+    <h3 class="font-sans text-3xl text-white">Arvore 2</h3>
+    <div class="mt-5 font-mono text-2xl text-white">
+        Root: @(tree2.Length > 0 && tree2[0].Length > 0 ? tree2[0][0].ToString() : "-")<br>
+        Left Branch: @(tree2.Length > 1 && tree2[1].Length > 0 ? string.Join(" -> ", tree2[1]) : "-")<br>
+        Right Branch: @(tree2.Length > 2 && tree2[2].Length > 0 ? string.Join(" -> ", tree2[2]) : "-")
+    </div>
+
+</body>
+
+
+@* <div class="w-full bg-blue-400 p-4 px-0">
+    <component type="typeof(TestComponent)" render-mode="ServerPrerendered">
+        <parameter name="Name" value="@name"></parameter>
+    </component>
+</div> *@
